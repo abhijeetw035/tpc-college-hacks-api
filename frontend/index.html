@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>College Hacks API</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>🎓 College Life Hacks</h1>
+
+    <section class="form-section">
+      <h2>Submit a New Hack</h2>
+      <form id="hackForm">
+        <input type="text" id="title" placeholder="Title" required />
+        <input
+          type="text"
+          id="description"
+          placeholder="Description"
+          required
+        />
+        <input
+          type="text"
+          id="category"
+          placeholder="Category (e.g., hostel, mess)"
+          required
+        />
+        <button type="submit">Submit Hack</button>
+      </form>
+    </section>
+
+    <section class="fetch-section">
+      <h2>Fetch Hacks</h2>
+      <input
+        type="text"
+        id="filterCategory"
+        placeholder="Filter by category..."
+      />
+      <button id="fetchBtn">Get Hacks</button>
+      <div id="hacksContainer"></div>
+    </section>
+
+    <script src="script.js"></script>
+  </body>
+</html>
