@@ -22,7 +22,8 @@ app.get("/", (req, res) => {
 app.get("/api/hacks", async (req, res) => {
   try {
     const category = req.query.category;
-    const hacks = await Hack.find({ category: category || "General" });
+    const query = category ? { category: category } : {}; //
+    const hacks = await Hack.find(query);
     res.status(200).json(hacks);
   } catch (error) {
     res.status(500).json({ message: "Error fetching hacks" });
@@ -32,13 +33,7 @@ app.get("/api/hacks", async (req, res) => {
 app.post("/api/hacks", async (req, res) => {
   const { title, description, category } = req.body;
   try {
-    const newHack = new Hack({ title, description, category: "General" });
-    if(!title || !description) {
-      return res.status(400).json({ message: "Title and description are required" });
-    }
-    if (category) {
-      newHack.category = category;
-    }
+    const newHack = new Hack({ title, description, category });
     await newHack.save();
     res.status(201).json(newHack);
   } catch (error) {
