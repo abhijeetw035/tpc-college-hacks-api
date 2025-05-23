@@ -30,11 +30,14 @@ app.get("/api/hacks", async (req, res) => {
 });
 
 app.post("/api/hacks", async (req, res) => {
-  const { title, description } = req.body;
+  const { title, description, category } = req.body;
   try {
     const newHack = new Hack({ title, description, category: "General" });
-    if (!title || !description) {
+    if(!title || !description) {
       return res.status(400).json({ message: "Title and description are required" });
+    }
+    if (category) {
+      newHack.category = category;
     }
     await newHack.save();
     res.status(201).json(newHack);
