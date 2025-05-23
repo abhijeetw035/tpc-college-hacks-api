@@ -22,8 +22,7 @@ app.get("/", (req, res) => {
 app.get("/api/hacks", async (req, res) => {
   try {
     const category = req.query.category;
-    const query = category ? { category } : {};
-    const hacks = await Hack.find(query);
+    const hacks = await Hack.find({ category: category || "General" });
     res.status(200).json(hacks);
   } catch (error) {
     res.status(500).json({ message: "Error fetching hacks" });
